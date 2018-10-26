@@ -8,8 +8,6 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean name="employee" class="com.jalvarez.spring.Employee" p:id="20" p:name="Test"/>
-
     <bean name="hospital" class="com.jalvarez.spring.list.Hospital" p:name="Global Hospital">
         <property name="departments">
             <list>
