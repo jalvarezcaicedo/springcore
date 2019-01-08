@@ -8,6 +8,17 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <bean name="countriesAndLangs" class="com.jalvarez.spring.properties.CountriesAndLanguages">
+        <property name="countryAndLangs">
+            <props>
+                <prop key="USA">English</prop>
+                <prop key="Colombia">Español</prop>
+                <prop key="France">Frances</prop>
+            </props>
+        </property>
+    </bean>
+
     <bean name="hospital" class="com.jalvarez.spring.list.Hospital" p:name="Global Hospital">
         <property name="departments">
             <list>
@@ -18,5 +29,37 @@
         </property>
     </bean>
 
+    <bean name="cardealer" class="com.jalvarez.spring.set.CarDealer" p:name="Test Dealer">
+        <property name="models">
+            <list>
+                <value>Honda</value>
+                <value>BMW</value>
+                <value>Mazda</value>
+            </list>
+        </property>
+    </bean>
 
+    <bean name="customer" class="com.jalvarez.spring.map.Customer" p:id="1">
+        <property name="products">
+            <map>
+                <entry key="100" value="iPhone"/>
+                <entry key="200">
+                    <value>iPad</value>
+                </entry>
+                <entry value="iPhone">
+                    <key>
+                        <value>300</value>
+                    </key>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean name="scores" class="com.jalvarez.spring.reftypes.Scores" p:maths="80"
+          p:physics="90" p:chemistry="70"/>
+
+    <bean name="student" class="com.jalvarez.spring.reftypes.Student" p:scores-ref="scores"/>
+
+    <bean class="com.jalvarez.spring.lifecycle.Patient" name="patient" p:id="123"
+          init-method="hi" destroy-method="bye" lazy-init="true"/>
 </beans>
