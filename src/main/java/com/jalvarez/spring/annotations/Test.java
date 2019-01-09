@@ -1,6 +1,5 @@
 package com.jalvarez.spring.annotations;
 
-import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
