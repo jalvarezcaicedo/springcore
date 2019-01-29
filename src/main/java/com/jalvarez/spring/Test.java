@@ -1,11 +1,8 @@
 package com.jalvarez.spring;
 
-import com.jalvarez.spring.lifecycle.Patient;
-import com.jalvarez.spring.list.Hospital;
-import com.jalvarez.spring.map.Customer;
-import com.jalvarez.spring.properties.CountriesAndLanguages;
-import com.jalvarez.spring.reftypes.Student;
-import com.jalvarez.spring.set.CarDealer;
+import com.jalvarez.spring.dependencycheck.Prescription;
+import com.jalvarez.spring.innerbean.Employee;
+import com.jalvarez.spring.university.University;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,33 +10,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext classPathContext = new ClassPathXmlApplicationContext("config.xml");
-        Employee employee = (Employee) classPathContext.getBean("employee");
-        System.out.println("Employee ID " + employee.getId());
-        System.out.println("Employee Name " + employee.getName());
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+        Prescription prescription = (Prescription) context.getBean("prescription");
+        System.out.println(prescription);
 
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("listconfig.xml");
-        context.registerShutdownHook();
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("config.xml");
+        Employee employee = (Employee) applicationContext.getBean("employee");
+        System.out.println(employee.hashCode());
 
-        Hospital hospital = (Hospital) context.getBean("hospital");
-        System.out.println("Hospital Name " + hospital.getName());
-        System.out.println("Hospital Departments " + hospital.getDepartments());
+        Employee employee2 = (Employee) applicationContext.getBean("employee");
+        System.out.println(employee2.hashCode());
 
-
-        CarDealer carDealer = (CarDealer) context.getBean("cardealer");
-        System.out.println("CardDealer Name " + carDealer.getName());
-        System.out.println("CardDealer Models " + carDealer.getModels());
-
-        Customer customer = (Customer) context.getBean("customer");
-        System.out.println("Customer info \n" + customer);
-
-        CountriesAndLanguages countriesAndLangs = (CountriesAndLanguages) context.getBean("countriesAndLangs");
-        System.out.println(countriesAndLangs);
-
-        Student student = (Student) context.getBean("student");
-        System.out.println(student);
-
-        Patient patient = (Patient) context.getBean("patient");
-        System.out.println(patient);
+        University university = (University) applicationContext.getBean("university");
+        System.out.println("\n" + university.hashCode() + ":\n" + university.toString());
     }
+
 }

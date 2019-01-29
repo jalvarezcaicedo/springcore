@@ -8,17 +8,21 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean name="employee" class="com.jalvarez.spring.Employee" p:id="20" p:name="Test"/>
+    <bean name="prescription" class="com.jalvarez.spring.dependencycheck.Prescription"
+          p:id="20" p:patientName="Test" p:medicines=""/>
 
-    <bean name="hospital" class="com.jalvarez.spring.list.Hospital" p:name="Global Hospital">
-        <property name="departments">
-            <list>
-                <value>Front office</value>
-                <value>In patient</value>
-                <value>Out patient</value>
-            </list>
+    <!-- scopes-> prototype, singleton-->
+
+    <bean class="com.jalvarez.spring.university.University" name="university" p:id="1234" scope="prototype"
+          p:name="caltech" p:location="California, USA"/>
+
+    <bean class="com.jalvarez.spring.innerbean.Employee" name="employee" p:id="123" scope="singleton">
+        <property name="address">
+            <bean class="com.jalvarez.spring.innerbean.Address" name="address" p:houseNo="545"
+                  p:street="Av siempre viva" p:city="medellin"/>
         </property>
     </bean>
 
+    <!--<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>-->
 
 </beans>
